@@ -1,0 +1,17 @@
+{
+  "name": "eltcoin_smart_contracts",
+  "version": "0.1.0",
+  "description": "Smart contracts for ELTCOIN",
+  "homepage": "https://www.eltcoin.tech",
+  "license": "MIT",
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "chai-as-promised": "^7.1.1",
+    "chai-bignumber": "^2.0.1",
+    "truffle": "^3.4.11"
+  },
+  "scripts": {
+    "start": "truffle migrate",
+    "test": "truffle test"
+  }
+}
