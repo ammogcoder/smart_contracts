@@ -1,5 +1,5 @@
-var ELTCoin = artifacts.require("./ELTCoin.sol");
+const ELTCoin = artifacts.require("./ELTCoin.sol");
 
-module.exports = function(deployer) {
+module.exports = deployer => {
   deployer.deploy(ELTCoin);
 };

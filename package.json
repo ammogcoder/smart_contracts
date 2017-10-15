@@ -13,5 +13,8 @@
   "scripts": {
     "start": "truffle migrate",
     "test": "truffle test"
+  },
+  "dependencies": {
+    "moment": "^2.19.1"
   }
 }
