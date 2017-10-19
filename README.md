@@ -2,23 +2,6 @@
   <p>
     <img src="assets/logo.png" width="250" />
   </p>
-
-  <p>
-    <a href="https://travis-ci.org/ELTCOIN/smart_contracts">
-      <img src="https://travis-ci.org/ELTCOIN/smart_contracts.svg?branch=master" />
-    </a>
-  </p>
-  <p>
-    <a href="https://codeclimate.com/github/ELTCOIN/smart_contracts/maintainability">
-      <img src="https://api.codeclimate.com/v1/badges/357ef446ebabad2fdfb4/maintainability" />
-    </a>
-  </p>
-  <p>
-    <a href="https://codeclimate.com/github/ELTCOIN/smart_contracts/test_coverage">
-      <img src="https://api.codeclimate.com/v1/badges/357ef446ebabad2fdfb4/test_coverage" />
-    </a>
-  </p>
-
   <p>
     🚀 <strong>ELTCOIN</strong>  🚀
   </p>
@@ -27,6 +10,23 @@
   </p>
   <p>
     Smart contracts repository
+  </p>
+  <p>
+    <a href="https://travis-ci.org/ELTCOIN/smart_contracts">
+      <img src="https://travis-ci.org/ELTCOIN/smart_contracts.svg?branch=master" />
+    </a>
+    <a href="https://greenkeeper.io/">
+      <img src="https://badges.greenkeeper.io/ELTCOIN/smart_contracts.svg"/>
+    </a>
+  </p>
+
+  <p>
+    <a href="https://codeclimate.com/github/ELTCOIN/smart_contracts/maintainability">
+      <img src="https://api.codeclimate.com/v1/badges/357ef446ebabad2fdfb4/maintainability" />
+    </a>
+    <a href="https://codeclimate.com/github/ELTCOIN/smart_contracts/test_coverage">
+      <img src="https://api.codeclimate.com/v1/badges/357ef446ebabad2fdfb4/test_coverage" />
+    </a>
   </p>
 </div>
 
