@@ -8,13 +8,23 @@
     "chai": "^4.1.2",
     "chai-as-promised": "^7.1.1",
     "chai-bignumber": "^2.0.1",
+    "husky": "^0.14.3",
+    "lint-staged": "^4.3.0",
+    "prettier": "^1.7.4",
     "truffle": "^3.4.11"
   },
   "scripts": {
     "start": "truffle migrate",
-    "test": "truffle test"
+    "test": "truffle test",
+    "precommit": "lint-staged"
   },
   "dependencies": {
     "moment": "^2.19.1"
+  },
+  "lint-staged": {
+    "src/**/*.js": [
+      "prettier --single-quote --trailing-comma all --write",
+      "git add"
+    ]
   }
 }

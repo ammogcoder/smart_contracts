@@ -1,4 +1,4 @@
-var ELTCoin = artifacts.require("./ELTCoin.sol");
+var ELTCoin = artifacts.require('./ELTCoin.sol');
 
 const BigNumber = web3.BigNumber;
 
@@ -11,8 +11,12 @@ contract('ELTCoin', function(accounts) {
   let token;
 
   const assertJump = error => {
-    assert.isAbove(error.message.search('invalid opcode'), -1, 'Invalid opcode error must be returned');
-  }
+    assert.isAbove(
+      error.message.search('invalid opcode'),
+      -1,
+      'Invalid opcode error must be returned',
+    );
+  };
 
   beforeEach(async function() {
     token = await ELTCoin.new();
@@ -29,7 +33,7 @@ contract('ELTCoin', function(accounts) {
     try {
       await token.approve(accounts[1], 100);
       assert.fail('should have thrown before');
-    } catch(error) {
+    } catch (error) {
       assertJump(error);
     }
   });
@@ -58,7 +62,7 @@ contract('ELTCoin', function(accounts) {
     try {
       await token.transfer(accounts[1], 10000000000000002);
       assert.fail('should have thrown before');
-    } catch(error) {
+    } catch (error) {
       assertJump(error);
     }
   });
@@ -67,19 +71,22 @@ contract('ELTCoin', function(accounts) {
     let token = await ELTCoin.new();
     try {
       await token.approve(accounts[1], 100);
-      await token.transferFrom(accounts[0], accounts[2], 100, {from: accounts[1]});
+      await token.transferFrom(accounts[0], accounts[2], 100, {
+        from: accounts[1],
+      });
       assert.fail('should have thrown before');
-    } catch(error) {
+    } catch (error) {
       assertJump(error);
     }
   });
-
 
   it('should return correct balances after transfering from another account (after exchangeReady)', async function() {
     let token = await ELTCoin.new();
     await token.makePresaleReady();
     await token.approve(accounts[1], 100);
-    await token.transferFrom(accounts[0], accounts[2], 100, {from: accounts[1]});
+    await token.transferFrom(accounts[0], accounts[2], 100, {
+      from: accounts[1],
+    });
 
     let balance0 = await token.balanceOf(accounts[0]);
     assert.equal(balance0, 9999999999999900);
@@ -95,7 +102,9 @@ contract('ELTCoin', function(accounts) {
     let token = await ELTCoin.new();
     try {
       await token.approve(accounts[1], 99);
-      await token.transferFrom(accounts[0], accounts[2], 100, {from: accounts[1]});
+      await token.transferFrom(accounts[0], accounts[2], 100, {
+        from: accounts[1],
+      });
       assert.fail('should have thrown before');
     } catch (error) {
       assertJump(error);
@@ -107,7 +116,9 @@ contract('ELTCoin', function(accounts) {
     await token.makePresaleReady();
     await token.approve(accounts[1], 99);
     try {
-      await token.transferFrom(accounts[0], accounts[2], 100, {from: accounts[1]});
+      await token.transferFrom(accounts[0], accounts[2], 100, {
+        from: accounts[1],
+      });
       assert.fail('should have thrown before');
     } catch (error) {
       assertJump(error);
@@ -119,7 +130,9 @@ contract('ELTCoin', function(accounts) {
     let balance0 = await token.balanceOf(accounts[0]);
     try {
       await token.approve(accounts[1], 99);
-      await token.transferFrom(accounts[0], accounts[2], balance0+1, {from: accounts[1]});
+      await token.transferFrom(accounts[0], accounts[2], balance0 + 1, {
+        from: accounts[1],
+      });
       assert.fail('should have thrown before');
     } catch (error) {
       assertJump(error);
@@ -132,7 +145,9 @@ contract('ELTCoin', function(accounts) {
     let balance0 = await token.balanceOf(accounts[0]);
     await token.approve(accounts[1], 99);
     try {
-      await token.transferFrom(accounts[0], accounts[2], balance0+1, {from: accounts[1]});
+      await token.transferFrom(accounts[0], accounts[2], balance0 + 1, {
+        from: accounts[1],
+      });
       assert.fail('should have thrown before');
     } catch (error) {
       assertJump(error);
@@ -153,7 +168,7 @@ contract('ELTCoin', function(accounts) {
       await token.makePresaleReady();
       try {
         await token.increaseApproval(accounts[1], 50);
-      } catch(error) {
+      } catch (error) {
         assertJump(error);
       }
     });
@@ -175,7 +190,7 @@ contract('ELTCoin', function(accounts) {
     await token.makePresaleReady();
     try {
       await token.approve(accounts[1], 50);
-    } catch(error) {
+    } catch (error) {
       assertJump(error);
     }
   });
@@ -194,7 +209,7 @@ contract('ELTCoin', function(accounts) {
     try {
       let transfer = await token.transfer(0x0, 100);
       assert.fail('should have thrown before');
-    } catch(error) {
+    } catch (error) {
       assertJump(error);
     }
   });
@@ -205,7 +220,7 @@ contract('ELTCoin', function(accounts) {
     try {
       let transfer = await token.transfer(0x0, 100);
       assert.fail('should have thrown before');
-    } catch(error) {
+    } catch (error) {
       assertJump(error);
     }
   });
@@ -215,9 +230,11 @@ contract('ELTCoin', function(accounts) {
 
     try {
       await token.approve(accounts[1], 100);
-      let transfer = await token.transferFrom(accounts[0], 0x0, 100, {from: accounts[1]});
+      let transfer = await token.transferFrom(accounts[0], 0x0, 100, {
+        from: accounts[1],
+      });
       assert.fail('should have thrown before');
-    } catch(error) {
+    } catch (error) {
       assertJump(error);
     }
   });
@@ -227,9 +244,11 @@ contract('ELTCoin', function(accounts) {
     await token.makePresaleReady();
     await token.approve(accounts[1], 100);
     try {
-      let transfer = await token.transferFrom(accounts[0], 0x0, 100, {from: accounts[1]});
+      let transfer = await token.transferFrom(accounts[0], 0x0, 100, {
+        from: accounts[1],
+      });
       assert.fail('should have thrown before');
-    } catch(error) {
+    } catch (error) {
       assertJump(error);
     }
   });
