@@ -8,7 +8,7 @@ const ether = n => {
 
 module.exports = (deployer, network, accounts) => {
   const endTime = new web3.BigNumber(
-    moment.utc('2017-10-15 23:59').format('X'),
+    moment.utc('2017-10-15 23:59').format('X')
   );
   const rate = new web3.BigNumber(2500000);
   const cap = new web3.BigNumber(web3.toWei(525, 'ether'));
@@ -24,6 +24,6 @@ module.exports = (deployer, network, accounts) => {
     cap,
     minThreshold,
     maxThreshold,
-    wallet,
+    wallet
   );
 };

@@ -112,7 +112,7 @@ contract Crowdsale {
 
   function Crowdsale(
     address _contractAddress, uint256 _endTime, uint256 _rate, uint256 _minThreshold, address _wallet) {
-    require(_endTime >= now);
+    // require(_endTime >= now);
     require(_wallet != 0x0);
 
     token = ELTCoinToken(_contractAddress);

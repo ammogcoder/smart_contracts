@@ -254,8 +254,8 @@ contract CappedCrowdsale is Crowdsale {
   }
 }
 
-contract ELTCoinCrowdsale is Ownable, CappedCrowdsale, IndividualCappedCrowdsale {
-  function ELTCoinCrowdsale(address _coinAddress, uint256 _endTime, uint256 _rate, uint256 _cap, uint256 _minThreshold, uint256 _capPerAddress, address _wallet)
+contract ELTCoinDynamicCrowdsale is Ownable, CappedCrowdsale, IndividualCappedCrowdsale {
+  function ELTCoinDynamicCrowdsale(address _coinAddress, uint256 _endTime, uint256 _rate, uint256 _cap, uint256 _minThreshold, uint256 _capPerAddress, address _wallet)
     IndividualCappedCrowdsale(_capPerAddress)
     CappedCrowdsale(_cap)
     Crowdsale(_coinAddress, _endTime, _rate, _minThreshold, _wallet)

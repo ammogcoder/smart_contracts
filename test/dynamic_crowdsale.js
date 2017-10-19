@@ -14,7 +14,7 @@ const {
 } = require('./helpers');
 
 const ELTCoinDynamicCrowdsale = artifacts.require(
-  './ELTCoinDynamicCrowdsale.sol',
+  './ELTCoinDynamicCrowdsale.sol'
 );
 const ELTCoin = artifacts.require('./ELTCoin.sol');
 
@@ -27,7 +27,7 @@ contract('ELTCoinDynamicCrowdsale', accounts => {
   const START_RATE = new BigNumber(320000);
   const CAP = ether(520);
   const MINIMUM_THRESHOLD = ether(0.1);
-  const CAP_PER_ADDRESS = ether(30);
+  const CAP_PER_ADDRESS = ether(20);
   const TOTAL_SUPPLY = ether(528).div(START_RATE * 10);
 
   before(async () => {
@@ -46,7 +46,7 @@ contract('ELTCoinDynamicCrowdsale', accounts => {
       CAP,
       MINIMUM_THRESHOLD,
       CAP_PER_ADDRESS,
-      wallet,
+      wallet
     );
     await this.token.transfer(this.crowdsale.address, TOTAL_SUPPLY, {
       from: owner,
@@ -61,10 +61,10 @@ contract('ELTCoinDynamicCrowdsale', accounts => {
     (await this.crowdsale.startRate()).should.be.bignumber.equal(START_RATE);
     (await this.crowdsale.wallet()).should.be.equal(wallet);
     (await this.crowdsale.minThreshold()).should.be.bignumber.equal(
-      MINIMUM_THRESHOLD,
+      MINIMUM_THRESHOLD
     );
     (await this.crowdsale.capPerAddress()).should.be.bignumber.equal(
-      CAP_PER_ADDRESS,
+      CAP_PER_ADDRESS
     );
   });
 
@@ -81,17 +81,17 @@ contract('ELTCoinDynamicCrowdsale', accounts => {
     });
 
     (await this.token.balanceOf(investor)).should.be.bignumber.equal(
-      expectedTokenAmount,
+      expectedTokenAmount
     );
 
     (await this.token.balanceOf(
-      this.crowdsale.address,
+      this.crowdsale.address
     )).should.be.bignumber.equal(TOTAL_SUPPLY.sub(expectedTokenAmount));
 
     (await this.crowdsale.currentRate()).should.be.bignumber.equal(START_RATE);
 
     (await this.crowdsale.tokensSold()).should.be.bignumber.equal(
-      expectedTokenAmount,
+      expectedTokenAmount
     );
   });
 
@@ -110,59 +110,21 @@ contract('ELTCoinDynamicCrowdsale', accounts => {
     });
 
     (await this.token.balanceOf(investor)).should.be.bignumber.equal(
-      expectedTokenAmount1.add(expectedTokenAmount2),
+      expectedTokenAmount1.add(expectedTokenAmount2)
     );
 
     (await this.token.balanceOf(
-      this.crowdsale.address,
+      this.crowdsale.address
     )).should.be.bignumber.equal(
-      TOTAL_SUPPLY.sub(expectedTokenAmount1.add(expectedTokenAmount2)),
+      TOTAL_SUPPLY.sub(expectedTokenAmount1.add(expectedTokenAmount2))
     );
 
     (await this.crowdsale.currentRate()).should.be.bignumber.equal(
-      START_RATE.mul(2),
+      START_RATE.mul(2)
     );
 
     (await this.crowdsale.tokensSold()).should.be.bignumber.equal(
-      expectedTokenAmount1.add(expectedTokenAmount2),
-    );
-  });
-
-  it('should compute right number of tokens when crossing two boundaries', async () => {
-    const investmentAmount = ether(30);
-
-    const expectedTokenAmount1 = ether(9.6).div(START_RATE);
-    const expectedTokenAmount2 = ether(19.2).div(START_RATE.mul(2));
-    const expectedTokenAmount3 = ether(1.2).div(START_RATE.mul(3));
-
-    web3.eth.sendTransaction({
-      from: investor,
-      to: this.crowdsale.address,
-      value: investmentAmount,
-      gas: 1000000,
-      gasPrice: 40000000000,
-    });
-
-    (await this.token.balanceOf(investor)).should.be.bignumber.equal(
-      expectedTokenAmount1.add(expectedTokenAmount2).add(expectedTokenAmount3),
-    );
-
-    (await this.token.balanceOf(
-      this.crowdsale.address,
-    )).should.be.bignumber.equal(
-      TOTAL_SUPPLY.sub(
-        expectedTokenAmount1
-          .add(expectedTokenAmount2)
-          .add(expectedTokenAmount3),
-      ),
-    );
-
-    (await this.crowdsale.currentRate()).should.be.bignumber.equal(
-      START_RATE.mul(3),
-    );
-
-    (await this.crowdsale.tokensSold()).should.be.bignumber.equal(
-      expectedTokenAmount1.add(expectedTokenAmount2).add(expectedTokenAmount3),
+      expectedTokenAmount1.add(expectedTokenAmount2)
     );
   });
 
@@ -180,11 +142,11 @@ contract('ELTCoinDynamicCrowdsale', accounts => {
     });
 
     (await this.token.balanceOf(investor)).should.be.bignumber.equal(
-      expectedTokenAmount1,
+      expectedTokenAmount1
     );
 
     (await this.token.balanceOf(
-      this.crowdsale.address,
+      this.crowdsale.address
     )).should.be.bignumber.equal(TOTAL_SUPPLY.sub(expectedTokenAmount1));
 
     const investmentAmount2 = ether(1);
@@ -200,21 +162,21 @@ contract('ELTCoinDynamicCrowdsale', accounts => {
     });
 
     (await this.token.balanceOf(investor)).should.be.bignumber.equal(
-      expectedTokenAmount1.add(expectedTokenAmount2),
+      expectedTokenAmount1.add(expectedTokenAmount2)
     );
 
     (await this.token.balanceOf(
-      this.crowdsale.address,
+      this.crowdsale.address
     )).should.be.bignumber.equal(
-      TOTAL_SUPPLY.sub(expectedTokenAmount1).sub(expectedTokenAmount2),
+      TOTAL_SUPPLY.sub(expectedTokenAmount1).sub(expectedTokenAmount2)
     );
 
     (await this.crowdsale.currentRate()).should.be.bignumber.equal(
-      START_RATE.mul(2),
+      START_RATE.mul(2)
     );
 
     (await this.crowdsale.tokensSold()).should.be.bignumber.equal(
-      expectedTokenAmount1.add(expectedTokenAmount2),
+      expectedTokenAmount1.add(expectedTokenAmount2)
     );
   });
 
@@ -235,17 +197,17 @@ contract('ELTCoinDynamicCrowdsale', accounts => {
     });
 
     (await this.token.balanceOf(investor)).should.be.bignumber.equal(
-      expectedTokenAmount,
+      expectedTokenAmount
     );
 
     (await this.token.balanceOf(
-      this.crowdsale.address,
+      this.crowdsale.address
     )).should.be.bignumber.equal(TOTAL_SUPPLY.sub(expectedTokenAmount));
 
     (await this.crowdsale.currentRate()).should.be.bignumber.equal(START_RATE);
 
     (await this.crowdsale.tokensSold()).should.be.bignumber.equal(
-      expectedTokenAmount,
+      expectedTokenAmount
     );
   });
 
@@ -303,7 +265,7 @@ contract('ELTCoinDynamicCrowdsale', accounts => {
     }).should.be.fulfilled;
 
     await this.crowdsale.buyTokens(investor, {
-      value: ether(20),
+      value: ether(10),
       from: investor,
       gasPrice: 40000000000,
     }).should.be.fulfilled;
@@ -349,7 +311,7 @@ contract('ELTCoinDynamicCrowdsale', accounts => {
 
     (await this.token.balanceOf(owner)).should.be.bignumber.equal(totalSupply);
     (await this.token.balanceOf(
-      this.crowdsale.address,
+      this.crowdsale.address
     )).should.be.bignumber.equal(0);
   });
 });

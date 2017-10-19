@@ -1,5 +1,7 @@
 var ELTCoin = artifacts.require('./ELTCoin.sol');
-var ELTCoinCrowdsale = artifacts.require('./ELTCoinCrowdsale.sol');
+var ELTCoinDynamicCrowdsale = artifacts.require(
+  './ELTCoinDynamicCrowdsale.sol'
+);
 
 const ether = n => {
   new web3.BigNumber(web3.toWei(n, 'ether'));
@@ -14,13 +16,13 @@ module.exports = (deployer, network, accounts) => {
   const wallet = accounts[0];
 
   return deployer.deploy(
-    ELTCoinCrowdsale,
+    ELTCoinDynamicCrowdsale,
     ELTCoin.address,
     endTime,
     startRate,
     cap,
     minThreshold,
     capPerAddress,
-    wallet,
+    wallet
   );
 };
