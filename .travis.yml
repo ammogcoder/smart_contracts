@@ -4,7 +4,12 @@ language: node_js
 node_js:
 - '8'
 env:
-- SOLIDITY_COVERAGE=true
+  matrix:
+  - SOLIDITY_COVERAGE=true
+  global:
+    secure: o4ygK09gnSau+JoiCbMZwHxUdkwh3QJS99Uywv83Iueb3qB0opex/yYkHx4Ybpx6iweRZcb3EX8WZ/5k80/pdiVctXzHE8pMnvRIgFLiLQRBIRenmxuwAiWZrjjkwK7ko57yFrPQoQ8pAQEHtmjQx7N2cG4mrW1KCCaAKZKUQzMqC2btB09VTqXT3NtZCGc63akWfI3FpL1FoPpitvbrY6QKF7vyCd2MXUAnaOLCTydxKw6NooDU82hdAutvXD7C/3fCBN3G+8KFRd6P3Da5oRrpm63LF6Jd/2iAv0zSrJOg7S6mbvM2pYv7VX/HaA8F/ScVWRUXNpAlGeNLkOYwxJws+mMsOr9zp6TEqMNlpdmfj09bd0DOf/q0zGzTpXt6wJeDn58Zo0owYdkTLaXcZMi/znzGpjpd3XU/+u754PRlPBjeeivACfjGxW4a0eCf9Ee2A/pWjjrdVgwiLyqJF7XYtAJZL1OlWnn4+QhBehdzGHKr/aBLd1DIV/DFQDRxDY2wg/f5Aw15BTQ+/HOMArWPEzdbmnGtZ/YPheaoyaKQEAPfY2AW4NmMmSiMrg8tkGKq4c+ZzIV94o1/fiQny63CalfDYCsaPZiFqXMUequ1FijKJ1qxJ/m/F16nNq20AjriV/U4EC4jc/X84ewXyaeEUTFtRcokEpNW3V7g6MM=
+before_install:
+- npm install -g greenkeeper-lockfile
 install:
 - npm install -g truffle
 - npm install -g ethereumjs-testrpc
@@ -16,8 +21,10 @@ before_script:
   > ./cc-test-reporter
 - chmod +x ./cc-test-reporter
 - "./cc-test-reporter before-build"
+- greenkeeper-lockfile-update
 after_script:
 - "./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT"
+- greenkeeper-lockfile-upload
 notifications:
   slack:
     secure: QiB918+G3hHGYT2Qw5MfN9gDh+V2Zj6perenormZNC1uD5RmkpqfUitHdbXvseUnGmgN2G0M05j6jSpDQf21BkJX+/x92io6Zm0Dzvx5dXNC39cJFGaEhJmPjhYstbpnadysji2qQ7E+UMo7MewnlFMfuQQOywH11RBgpCBYy0ZCy/8VkN2xV15RAI1ISNBQHZ+z8F05wk+J1OOftQpBtyjZRuhbF3efwZmpRA8lyVoMPuCppZ0JfDGHewKbNqtBIC2zDjS3UgOpKLm7Y5yQ1m8epS+N1E3m8SI2pkYbZvURTKlD0Ip0FAqzAf+UOAgePzYmHH88qYPd6M3NM6JdnveLF3w58VWLriFYbIuffyW6iJHnp2APXy0lsBAd4ezFnviucrKHFfGC17he38dIovos/xBZlTHOGfaKmRwHxnS3ZK80KjGRc0Fivq9pjHWu67qXDLeKQLB/Rm3h5dozPdUVWzdq/bj224AYLlJAVb4Q4l/InLRedJpvZWW6rblsLo/JgePK/IP9tzKSvamUxvt9luWoxVgPn0toR8fJ5hxVZL5hmeZslgsD76olayNnQbvf6zRhi7n71S22sKJVwazfxg3UTHRMllRmOmB3czjhmCQRMab3Ez9aO9JKfAznwkV5IcLTB7VXFVeFMl53EUh6+tnNtzaE1DkMd62N33k=
