@@ -13,7 +13,7 @@
     "lint-staged": "^4.3.0",
     "prettier": "^1.7.4",
     "solidity-coverage": "^0.2.7",
-    "truffle": "^3.4.11"
+    "truffle": "^4.0.0"
   },
   "scripts": {
     "coverage": "scripts/coverage.sh",
