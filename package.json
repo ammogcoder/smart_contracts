@@ -10,7 +10,7 @@
     "chai-bignumber": "^2.0.1",
     "ethereumjs-testrpc": "^6.0.1",
     "husky": "^0.14.3",
-    "lint-staged": "^4.3.0",
+    "lint-staged": "^5.0.0",
     "prettier": "^1.7.4",
     "solidity-coverage": "^0.2.7",
     "truffle": "^4.0.0"
